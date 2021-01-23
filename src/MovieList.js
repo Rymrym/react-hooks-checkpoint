@@ -5,6 +5,7 @@ import Modal from 'react-modal'
 import MovieCard from './MovieCard';
 import {Button} from 'react-bootstrap';
 
+
      
 function MovieList() {
  
@@ -32,8 +33,8 @@ const [title, setTitle] = useState('')
 const [description, setDescription] = useState('')
 const [poster, setPoster] = useState('')
 const [rate, setRate] = useState('')
-const getData = (val)=>{
-    setMovies(movies.filter(item=>item.title.includes(val.target.value))
+const getData = (val,stars)=>{
+    setMovies(movies.filter(item=>item.title.includes(val.target.value)&& item.rate === stars )
   )}
   const handleTitleChange = (event)=>{
 setTitle(event.target.value)
@@ -48,6 +49,11 @@ const handleDescriptionChange = (event)=>{
     setRate(event.target.value)
   }
 
+  const findMovies = (title, rate)=> {
+   setMovies(movies.filter(movie=> movie.title.includes (title) && movie.rate === rate ))
+  }
+
+
 
   const addMovie = (event)=>{
 event.preventDefault();
@@ -58,9 +64,17 @@ setModalState(false)
 
     return (
        <>
-       <Container fluid><Filter getInput = {getData} ></Filter></Container><br/>
+       <Container fluid>
+         <Filter findMovies = {findMovies}>
+          </Filter>
+          
+          
+          
+          </Container>
+         
+         <br/>
        <Container fluid><Row>
-       {movies.map(movie => <MovieCard height = "200" width = "33%"title = {movie.title} description = {movie.description} poster = {movie.posterUrl} rate = {movie.rate}></MovieCard>)}
+       {movies.map(movie => <MovieCard height = "200" width = "33%" title = {movie.title} description = {movie.description} poster = {movie.posterUrl} rate = {movie.rate}></MovieCard>)}
        <div style ={{padding : 100}}>
       <Button style = {button} variant = 'dark' onClick = {()=>setModalState(true)}>New Movie</Button> 
       </div>
