@@ -6,6 +6,7 @@ import MovieCard from './MovieCard';
 import {Button} from 'react-bootstrap';
 
 
+
      
 function MovieList() {
  
@@ -18,15 +19,15 @@ function MovieList() {
   }
     const [movies, setMovies] = useState([
         {title : "A Beautiful Mind", description:"Emotionally charged film detailing the life of a brilliant academic who suffers from schizophrenia.", 
-    posterUrl:"https://m.media-amazon.com/images/M/MV5BMzcwYWFkYzktZjAzNC00OGY1LWI4YTgtNzc5MzVjMDVmNjY0XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UY1200_CR89,0,630,1200_AL_.jpg", rate:5},
+    posterUrl:"https://m.media-amazon.com/images/M/MV5BMzcwYWFkYzktZjAzNC00OGY1LWI4YTgtNzc5MzVjMDVmNjY0XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UY1200_CR89,0,630,1200_AL_.jpg", rate:5, trailer : "https://www.youtube.com/embed/9wZM7CQY130"},
     {title : "Shutter Island", description:"In 1954, U.S. Marshals Edward Teddy Daniels and his new partner Chuck Aule travel to the Ashecliffe Hospital for the criminally insane on Shutter Island in Boston Harbor. They are investigating the disappearance of patient Rachel Solando, incarcerated for drowning her three children.", 
-    posterUrl:"https://images-na.ssl-images-amazon.com/images/I/51MsI8xR-NL._AC_.jpg", rate:5},
+    posterUrl:"https://images-na.ssl-images-amazon.com/images/I/51MsI8xR-NL._AC_.jpg", rate:5, trailer : "https://www.youtube.com/embed/5iaYLCiq5RM"},
     {title : "The Green Mile", description:"Death row supervisor Paul Edgecombe's encounter with John Coffey, an unusual inmate who displays inexplicable healing and empathetic abilities.", 
-    posterUrl:"https://images-na.ssl-images-amazon.com/images/I/71%2BgLki%2BJ8L._AC_SL1500_.jpg", rate:4},
+    posterUrl:"https://images-na.ssl-images-amazon.com/images/I/71%2BgLki%2BJ8L._AC_SL1500_.jpg", rate:4, trailer : "https://www.youtube.com/embed/Ki4haFrqSrw"},
     {title : "The Dark Knight", description:" Batman and his primal confrontation with the Joker, the villain who is first among equals", 
-    posterUrl:"https://i5.walmartimages.com/asr/9f50302f-a5d7-4ea1-bd68-a956191e9003_1.2336cbe0c9518fd2378eabe3f32bbb0f.jpeg", rate:4},
+    posterUrl:"https://i5.walmartimages.com/asr/9f50302f-a5d7-4ea1-bd68-a956191e9003_1.2336cbe0c9518fd2378eabe3f32bbb0f.jpeg", rate:4, trailer : "https://www.youtube.com/embed/EXeTwQWrcwY"},
     {title : "Papillon", description:"French convict Henri Charrière, nicknamed Papillon, who was imprisoned in 1933 and escaped in 1941 with the help of another convict, counterfeiter Louis Dega.", 
-    posterUrl:"https://movieposters2.com/images/1562472-b.jpg", rate:3},
+    posterUrl:"https://movieposters2.com/images/1562472-b.jpg", rate:3, trailer : "https://www.youtube.com/embed/xqj7XOv9mC8"},
 
 ])
 const [title, setTitle] = useState('')
@@ -74,7 +75,11 @@ setModalState(false)
          
          <br/>
        <Container fluid><Row>
-       {movies.map(movie => <MovieCard height = "200" width = "33%" title = {movie.title} description = {movie.description} poster = {movie.posterUrl} rate = {movie.rate}></MovieCard>)}
+       {movies.map(movie => <MovieCard height = "200" width = "33%" title = {movie.title} description = {movie.description} poster = {movie.posterUrl} rate = {movie.rate} trailer = {movie.trailer}>
+       
+       </MovieCard>
+        
+       )}
        <div style ={{padding : 100}}>
       <Button style = {button} variant = 'dark' onClick = {()=>setModalState(true)}>New Movie</Button> 
       </div>
@@ -89,8 +94,7 @@ setModalState(false)
         <Button variant ='dark' onClick = {addMovie}>Submit</Button>
         </div>
         </Modal>  
-      
-     
+        
        </> 
     );
 }

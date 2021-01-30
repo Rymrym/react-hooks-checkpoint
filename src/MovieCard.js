@@ -1,13 +1,25 @@
-import React from 'react';
-import StarRatingComponent from 'react-star-rating-component'
+import React , {useState} from 'react';
+import StarRatingComponent from 'react-star-rating-component';
+import {Link} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route} from'react-router-dom';
+import Details from './Details';
+import MovieList from './MovieList'
+import Modal from 'react-modal'
+
 
 
 function MovieCard(props) {
+   const [modalState, setModalState]= useState(false)
  const style = {height : 250,
           backgroundColor : "#181818",
                 margin : 10}
+                let title = props.title
+                let trailer = props.trailer
+                let description = props.description
     return (
        <>
+         <Router>
+       <Link to ='/details'>
    <div   style={style}>
       <img src = {props.poster}   height = "200" width = "280"/><br/>
      <h6 style = {{float : "left", color : "whitesmoke"}}>{props.title}</h6>
@@ -18,9 +30,20 @@ function MovieCard(props) {
     starColor={"#ffb400"} /* color of selected icons, default `#ffb400` */
     emptyStarColor={"#333"} /* color of non-selected icons, default `#333` */
     editing={false} /* is component available for editing, default `true` *//>
+    <span>{}</span>
  
     </div>
-     
+    </Link>
+  
+
+<Route path = "/details" render={(props) => (
+   <Modal isOpen={true} backgroundColor = 'black'>
+    <Details {...props} trailer={trailer} title= {title} description = {description} />
+    </Modal>
+  )}/>
+  
+</Router>
+
        </> 
     );
 }
